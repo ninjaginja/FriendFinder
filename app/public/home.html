@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FriendFinder - For Furry Friends</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1><img src="paw-print-icon.png" height="50px" style="padding-bottom: 5px;"> FriendFinder</h1>
+      <h3>... For Furry Friends</h3>
+      <hr>
+      <h3>Answer a few basic questions.</h3>
+      <h3>Find the perfect match for your favorite furry friend.</h3>
+      <button type="button" class="btn btn-lg btn-primary" style="margin-top: 20px;"><span class="glyphicon glyphicon-edit"></span> Go To Survey</button>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p><a href="#">API Friends List</a> | <a href="#">GitHub Repo</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script type="text/javascript">
+    // QUESTION: What is this code doing?
+    $("#search-btn").on("click", function() {
+      var searchedCharacter = $("#character-search").val().trim();
+
+      searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+
+      // QUESTION: What does $.get do? What are the parameters it is expecting?
+      $.get("/api/" + searchedCharacter, function(data) {
+        console.log(data);
+        if (data) {
+          $("#stats").show();
+          $("#name").text(data.name);
+          $("#role").text(data.role);
+          $("#age").text(data.age);
+          $("#force-points").text(data.forcePoints);
+        }
+        else {
+          $("#name").text("The force is not strong with this one. Your character was not found.");
+          $("#stats").hide();
+        }
+      });
+    });
+  </script> -->
+
+</body>
+</html>
