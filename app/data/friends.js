@@ -18,3 +18,5 @@ var friends = [
     role: "https://i.pinimg.com/736x/f7/0d/57/f70d57c9ebff225a68343502f63cd5e2--the-gray-grey.jpg"
   }
 ];
+
+module.exports = friends;
