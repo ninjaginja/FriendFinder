@@ -195,11 +195,13 @@
   					$('#question10').val().trim()
   				]
   			};
-  			console.log('newFriend = ' + JSON.stringify(newFriend));
+  			// console.log('newFriend = ' + JSON.stringify(newFriend));
+        console.log(newFriend);
   			// Add user inputs to friends list
   			$.post('/api/friends', newFriend,
         		function(data) {
-        			console.log('response = ' + JSON.stringify(data));
+        			// console.log('response = ' + JSON.stringify(data));
+              console.log(data);
         		});
 
         // Empty values in form after clicking submit button
