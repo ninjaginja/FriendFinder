@@ -37,13 +37,13 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="role">Image URL (Required)</label>
+                    <label for="image">Image URL (Required)</label>
                     <input type="text" class="form-control" id="image">
                   </div>
                   <hr>
                   <h3>Question 1</h3>
                   <h4>Would rather be frolicking in an open field.</h4>
-                  <select class="selectpicker">
+                  <select class="selectpicker" id="question1">
                     <option value></option>
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
@@ -54,7 +54,7 @@
 
                   <h3>Question 2</h3>
                   <h4>Always hungry.</h4>
-                  <select class="selectpicker">
+                  <select class="selectpicker" id="question2">
                     <option value></option>
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
@@ -65,7 +65,7 @@
 
                   <h3>Question 3</h3>
                   <h4>Like to snuggle close.</h4>
-                  <select class="selectpicker">
+                  <select class="selectpicker" id="question3">
                     <option value></option>
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
@@ -76,7 +76,7 @@
 
                   <h3>Question 4</h3>
                   <h4>Would rather smell horrible than take a bath.</h4>
-                  <select class="selectpicker">
+                  <select class="selectpicker" id="question4">
                     <option value></option>
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
@@ -87,7 +87,7 @@
 
                   <h3>Question 5</h3>
                   <h4>Love anyone who is paying attention to me.</h4>
-                  <select class="selectpicker">
+                  <select class="selectpicker" id="question5">
                     <option value></option>
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
@@ -98,7 +98,7 @@
 
                   <h3>Question 6</h3>
                   <h4>Rely on my cuteness to get out of a sticky situation.</h4>
-                  <select class="selectpicker">
+                  <select class="selectpicker" id="question6">
                     <option value></option>
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
@@ -109,7 +109,7 @@
 
                   <h3>Question 7</h3>
                   <h4>Anything for a good game of fetch.</h4>
-                  <select class="selectpicker">
+                  <select class="selectpicker" id="question7">
                     <option value></option>
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
@@ -120,7 +120,7 @@
 
                   <h3>Question 8</h3>
                   <h4>Would swim every day if I could!</h4>
-                  <select class="selectpicker">
+                  <select class="selectpicker" id="question8">
                     <option value></option>
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
@@ -131,7 +131,7 @@
 
                   <h3>Question 9</h3>
                   <h4>Understand English, but nobody knows.</h4>
-                  <select class="selectpicker">
+                  <select class="selectpicker" id="question9">
                     <option value></option>
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
@@ -142,7 +142,7 @@
 
                   <h3>Question 10</h3>
                   <h4>Love meeting new friends.</h4>
-                  <select class="selectpicker">
+                  <select class="selectpicker" id="question10">
                     <option value></option>
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
@@ -151,18 +151,19 @@
                     <option value="5">5 (Strongly Disagree)</option>
                   </select>
 
+
+                  <br>
+                  <div class="text-left">
+                    <button type="submit" style="margin-top: 20px;" class="btn btn-primary btn-lg btn-block" id="submit-btn">Find My Match <span class="glyphicon glyphicon-menu-right"></span></button>
+                  </div>
                 </form>
-                <br>
-                <div class="text-left">
-                  <button type="submit" class="btn btn-primary btn-lg btn-block" id="add-btn">Find My Match <span class="glyphicon glyphicon-menu-right"></span></button>
-                </div>
               </div>
             </div>
 
           </div>
           <div class="row">
             <div class="col-md-12">
-              <p style="margin-left: 15px;"><a href="#">API Friends List</a> | <a href="#">GitHub Repo</a></p>
+              <p style="margin-left: 15px;"><a href="/api/friends">API Friends List</a> | <a href="https://github.com/ninjaginja/FriendFinder.git" target="_blank">GitHub Repo</a></p>
             </div>
           </div>
         </div>
@@ -171,6 +172,53 @@
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    jQuery.ajaxSettings.traditional = true;
+  		// Activate submit button
+  		$("#submit-btn").on('click', function(event) {
+  			event.preventDefault();
+  			// Gather user inputs
+  			var newFriend = {
+  				name: $('#name').val().trim(),
+  				imageUrl: $('#image').val().trim(),
+  				responses: [
+  					$('#question1').val().trim(),
+  					$('#question2').val().trim(),
+  					$('#question3').val().trim(),
+  					$('#question4').val().trim(),
+  					$('#question5').val().trim(),
+  					$('#question6').val().trim(),
+  					$('#question7').val().trim(),
+  					$('#question8').val().trim(),
+  					$('#question9').val().trim(),
+  					$('#question10').val().trim()
+  				]
+  			};
+  			console.log('newFriend = ' + JSON.stringify(newFriend));
+  			// Add user inputs to friends list
+  			$.post('/api/friends', newFriend,
+        		function(data) {
+        			console.log('response = ' + JSON.stringify(data));
+        		});
+
+        // Empty values in form after clicking submit button
+        $("#name").val("");
+        $("#image").val("");
+        $('#question1').val("");
+        $('#question2').val("");
+        $('#question3').val("");
+        $('#question4').val("");
+        $('#question5').val("");
+        $('#question6').val("");
+        $('#question7').val("");
+        $('#question8').val("");
+        $('#question9').val("");
+        $('#question10').val("");
+
+  		});
+  	</script>
+
 
 </body>
 </html>

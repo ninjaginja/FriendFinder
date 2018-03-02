@@ -9,10 +9,24 @@ module.exports = function(app) {
   app.post("/api/friends", function(req, res) {
 
     var newFriend = req.body;
-    console.log('userInput = ' + JSON.stringify(userInput));
+    console.log('newFriend = ' + JSON.stringify(newFriend));
+    // newFriend.routeName = newFriend.name.replace(/\s+/g, "").toLowerCase();
 
-    var friendResponses = newFriend.responses;
-    console.log(friendResponses);
+    var newResponses = newFriend.responses;
+    console.log("New Responses = " + newResponses);
+
+    // for (var i = 0; i < friends.length; i++) {
+    //   var difference = 0;
+    //   for (var j = 0; j < responses.length; j++) {
+    //     difference += Math.abs(friends[i].responses[j] - responses[j]);
+    //   }
+    //   console.log(difference);
+    //
+    // }
+
+    friends.push(newFriend);
+
+    res.json(newFriend);
 
   });
 
