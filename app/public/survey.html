@@ -154,7 +154,7 @@
 
                   <br>
                   <div class="text-left">
-                    <button type="submit" style="margin-top: 20px;" class="btn btn-primary btn-lg btn-block" id="submit-btn">Find My Match <span class="glyphicon glyphicon-menu-right"></span></button>
+                    <button type="submit" data-toggle="modal" data-target="#modal-window" style="margin-top: 20px;" class="btn btn-primary btn-lg btn-block" id="submit-btn">Find My Match <span class="glyphicon glyphicon-menu-right"></span></button>
                   </div>
                 </form>
               </div>
@@ -172,6 +172,28 @@
       </div>
     </div>
   </div>
+
+<!-- Modal window to show closest match results -->
+  <div class="modal" id="modal-window" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">A compatible mate for your furry friend</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 id="matchName"></h3>
+			  <img id="matchImage" class="materialboxed" width="450" src="">
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <script type="text/javascript">
   		// Activate submit button
@@ -201,7 +223,13 @@
         		function(data) {
         			// console.log('response = ' + JSON.stringify(data));
               console.log(data);
-        		});
+              // Set the name and image values of friend match
+      			  $('#matchName').html(data.matchName);
+		    	    $("#matchImage").attr("src", data.matchImage);
+		    	    // Pop open the modal dialog
+      			  $('#myModal').modal('show');
+            })
+
 
         // Empty values in form after clicking submit button
         $("#name").val("");
