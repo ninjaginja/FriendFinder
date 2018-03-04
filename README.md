@@ -7,4 +7,4 @@ Compatibility-based "FriendFinder" application for our furry friends. This full-
 The application is implemented using a Node.js and Express server on the back end and Bootstrap CSS framework on the front end.
 
 ### Demo
-This app is deployed through Heroku. You can access a demo [here](url).
+This app is deployed through Heroku. You can access a demo [here](https://stark-atoll-68154.herokuapp.com/).
